@@ -15,4 +15,40 @@ RSpec.describe "Places", type: :request do
       expect(response).to have_http_status 200
     end
   end
+
+  describe 'POST /groups/:group_id/places' do
+    let!(:user) { create(:user) }
+    let!(:group) { create(:group, owner: user) }
+
+    subject(:post_place) { post group_places_path(group), params: place_params }
+
+    before do
+      sign_in user
+    end
+
+    context 'パラメータが正常な場合' do
+      let(:place_params) { { place: { name: '浅草寺', description: '東京のお寺', url: 'https://www.senso-ji.jp/' } } }
+      
+      it 'placeが作成される' do
+        expect { post_place }.to change(Place, :count).by(1)
+      end
+
+      it 'group_places_pathにリダイレクトされる' do
+        expect(post_place).to redirect_to group_path(group)
+      end
+    end
+
+    context 'パラメータが異常な場合' do
+      let(:place_params) { { place: { name: '', description: '東京のお寺', url: 'https://www.senso-ji.jp/' } } }
+
+      it 'placeが作成されない' do
+        expect { post_place }.not_to change(Place, :count)
+      end
+
+      it 'バリデーションエラーが返される' do
+        post_place
+        expect(response).to have_http_status 422
+      end
+    end
+  end
 end

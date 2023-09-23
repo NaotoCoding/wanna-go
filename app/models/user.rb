@@ -24,6 +24,7 @@ class User < ApplicationRecord
   has_many :group_users, dependent: :destroy
   has_many :belonging_groups, through: :group_users, source: :group
   has_many :received_invites, class_name: 'Invite', dependent: :destroy, inverse_of: :user
+  has_many :places, dependent: :destroy
 
   validates :name, presence: true
   validates :unique_code, presence: true, uniqueness: true, length: { minimum: 5, maximum: 30 }
