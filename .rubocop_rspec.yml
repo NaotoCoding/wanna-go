@@ -1,0 +1,15 @@
+require:
+  - rubocop-rspec
+  - rubocop-factory_bot
+
+RSpec/ContextWording:
+  Enabled: false
+
+RSpec/Rails/HttpStatus:
+  EnforcedStyle: numeric
+
+RSpec/DescribedClass:
+  EnforcedStyle: explicit
+
+RSpec/LeadingSubject:
+  Enabled: false
