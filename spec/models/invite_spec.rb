@@ -26,4 +26,11 @@ RSpec.describe Invite, type: :model do
       expect(build(:invite)).to be_valid
     end
   end
+
+  describe '#accept!' do
+    it 'accepted_invitesテーブルにレコードが保存される' do
+      invite = create(:invite)
+      expect { invite.accept! }.to change(AcceptedInvite, :count).by(1)
+    end
+  end
 end
