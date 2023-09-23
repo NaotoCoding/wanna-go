@@ -19,6 +19,7 @@
 class Group < ApplicationRecord
   belongs_to :owner, class_name: 'User'
   has_many :group_users, dependent: :destroy
+  has_many :users, through: :group_users
   has_many :places, dependent: :destroy
 
   validates :name, presence: true
@@ -27,5 +28,9 @@ class Group < ApplicationRecord
 
   def member?(user)
     group_users.find_by(user:).present?
+  end
+
+  def owner?(user)
+    owner.id == user.id
   end
 end

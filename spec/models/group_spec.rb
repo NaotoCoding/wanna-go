@@ -54,4 +54,18 @@ RSpec.describe Group, type: :model do
       expect(group.member?(user)).to be false
     end
   end
+
+  describe '#owner?' do
+    let(:group) { create(:group) }
+    let(:user) { create(:user) }
+
+    it 'groupのownerがuserの時、trueを返す' do
+      group.owner = user
+      expect(group.owner?(user)).to be true
+    end
+
+    it 'groupのownerがuserでない時、falseを返す' do
+      expect(group.owner?(user)).to be false
+    end
+  end
 end
