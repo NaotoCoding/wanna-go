@@ -6,15 +6,15 @@
 #  name       :string           not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  user_id    :bigint           not null
+#  owner_id   :bigint           not null
 #
 # Indexes
 #
-#  index_groups_on_user_id  (user_id)
+#  index_groups_on_owner_id  (owner_id)
 #
 # Foreign Keys
 #
-#  fk_rails_...  (user_id => users.id)
+#  fk_rails_...  (owner_id => users.id)
 #
 require 'rails_helper'
 
@@ -27,6 +27,10 @@ RSpec.describe Group, type: :model do
     end
 
     context '異常なパラメータの場合' do
+      it 'ownerとしてuserと関連がない時、groupは無効' do
+        expect(build(:group, owner: nil)).to be_invalid
+      end
+
       it 'nameがnilの時、groupは無効' do
         expect(build(:group, name: nil)).to be_invalid
       end
