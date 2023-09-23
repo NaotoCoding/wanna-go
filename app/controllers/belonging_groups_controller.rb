@@ -1,4 +1,4 @@
-class GroupsController < ApplicationController
+class BelongingGroupsController < ApplicationController
   before_action :authenticate_user!
 
   def index; end
