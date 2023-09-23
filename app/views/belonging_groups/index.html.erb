@@ -4,14 +4,16 @@
       <th>グループ名</th>
       <th>オーナー</th>
       <th>人数</th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
     <% @belonging_groups.each do |belonging_group| %>
-      <tr>
+      <tr class='align-middle'>
         <td><%= belonging_group.name %></td>
         <td><%= belonging_group.decorate.owner_name %></td>
         <td><%= belonging_group.decorate.user_count %></td>
+        <td><%= link_to 'みる', group_path(belonging_group), class: 'btn btn-success' %></td>
       </tr>
     <% end %>
   </tbody>
