@@ -31,5 +31,6 @@ class Invite < ApplicationRecord
 
   def accept!
     accepted_invites.create!
+    group.group_users.create!(user:)
   end
 end
