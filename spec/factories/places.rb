@@ -23,10 +23,10 @@
 #
 FactoryBot.define do
   factory :place do
-    user { nil }
-    group { nil }
-    name { "MyString" }
-    description { "MyString" }
-    url { "MyString" }
+    user
+    group
+    name { '金閣' }
+    description { '京都の寺' }
+    url { 'https://www.shokoku-ji.jp/kinkakuji/' }
   end
 end
