@@ -10,8 +10,8 @@
     <% @belonging_groups.each do |belonging_group| %>
       <tr>
         <td><%= belonging_group.name %></td>
-        <td><%= belonging_group.owner.name %></td>
-        <td><%= belonging_group.group_users.count %></td>
+        <td><%= belonging_group.decorate.owner_name %></td>
+        <td><%= belonging_group.decorate.user_count %></td>
       </tr>
     <% end %>
   </tbody>
