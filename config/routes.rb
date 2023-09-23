@@ -11,5 +11,6 @@ Rails.application.routes.draw do
     end
 
     resources :places, only: [:new, :create]
+    resources :group_users, only: [:index]
   end
 end

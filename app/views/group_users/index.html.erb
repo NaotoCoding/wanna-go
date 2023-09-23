@@ -1,0 +1,27 @@
+<%= render 'groups/second_header', group: @group %>
+
+<h4 class='text-center mb-3'><%= @group.name %></h4>
+
+<div class='mb-4 d-flex justify-content-center w-75 mx-auto'>
+  <%= link_to 'ユーザー招待', new_group_invite_path(@group), class: 'btn btn-success' %>
+</div>
+
+<div class='mx-3'>
+  <h4 class='text-center mb-4'>参加ユーザー一覧</h4>
+  <table class='table'>
+    <thead>
+      <tr>
+        <th>ユーザー名</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @users.each do |user| %>
+        <tr class='align-middle'>
+          <td><%= user.name %></td>
+          <td><%= 'オーナー' if @group.owner?(user) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
