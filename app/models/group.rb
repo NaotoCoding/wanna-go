@@ -23,4 +23,8 @@ class Group < ApplicationRecord
   validates :name, presence: true
 
   after_create { group_users.create!(user: owner) }
+
+  def member?(user)
+    group_users.find_by(user:).present?
+  end
 end

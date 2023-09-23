@@ -40,4 +40,18 @@ RSpec.describe Group, type: :model do
       end
     end
   end
+
+  describe '#member?' do
+    let(:group) { create(:group) }
+    let(:user) { create(:user) }
+
+    it 'groupにuserが所属している時、trueを返す' do
+      create(:group_user, group:, user:)
+      expect(group.member?(user)).to be true
+    end
+
+    it 'groupにuserが所属していない時、falseを返す' do
+      expect(group.member?(user)).to be false
+    end
+  end
 end
