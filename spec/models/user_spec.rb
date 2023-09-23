@@ -30,7 +30,7 @@ RSpec.describe User, type: :model do
     end
 
     context '異常なパラメータの場合' do
-      it 'unique_codeに重複がある場合、userは無効' do
+      it 'unique_codeに重複がある時、userは無効' do
         create(:user, unique_code: 'duplicated_unique_code')
         expect(build(:user, unique_code: 'duplicated_unique_code')).to be_invalid
       end
