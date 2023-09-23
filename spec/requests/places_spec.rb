@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Places", type: :request do
+RSpec.describe 'Places', type: :request do
   describe 'ログインせずにアクションを実行した場合' do
     it 'ログイン画面にリダイレクトされる' do
       get new_group_invite_path(create(:group))
@@ -29,7 +29,7 @@ RSpec.describe "Places", type: :request do
 
     context 'パラメータが正常な場合' do
       let(:place_params) { { place: { name: '浅草寺', description: '東京のお寺', url: 'https://www.senso-ji.jp/' } } }
-      
+
       it 'placeが作成される' do
         expect { post_place }.to change(Place, :count).by(1)
       end
