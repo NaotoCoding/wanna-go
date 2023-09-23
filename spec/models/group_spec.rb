@@ -19,5 +19,11 @@
 require 'rails_helper'
 
 RSpec.describe Group, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe 'バリデーション' do
+    context '正常なパラメータの場合' do
+      it 'groupは有効' do
+        expect(build(:group)).to be_valid
+      end
+    end
+  end
 end
