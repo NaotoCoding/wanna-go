@@ -1,0 +1,64 @@
+require:
+  - rubocop-rails
+  - rubocop-performance
+
+inherit_from:
+  - .rubocop_rspec.yml
+
+inherit_mode:
+  merge:
+    - Exclude
+
+AllCops:
+  TargetRubyVersion: 3.2.2
+
+  Exclude:
+    - "bin/*"
+    - "config/**/*"
+    - "db/**/*"
+    - "lib/**/*"
+    - "log/**/*"
+    - "public/**/*"
+    - "storage/**/*"
+    - "tmp/**/*"
+    - "vendor/**/*"
+    - "Rakefile"
+
+Bundler/DuplicatedGem:
+  Enabled: true
+
+Style/AsciiComments:
+  Enabled: false
+
+Style/SymbolArray:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Style/EmptyMethod:
+  Enabled: true
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Style/WordArray:
+  EnforcedStyle: brackets
+
+Style/NumericPredicate:
+  Enabled: false
+
+Style/NumericLiterals:
+  Enabled: false
+
+Style/RedundantSelf:
+  Enabled: false
+
+Style/RegexpLiteral:
+  Enabled: false
+
+Layout/IndentationConsistency:
+  EnforcedStyle: indented_internal_methods
