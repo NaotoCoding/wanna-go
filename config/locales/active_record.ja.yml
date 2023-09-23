@@ -12,3 +12,7 @@ ja:
         unique_code: ユーザーコード
       group:
         name: グループ名
+      place:
+        name: 行きたいところ
+        url: サイト等のURL
+        description: 簡単な説明
