@@ -9,10 +9,11 @@ RSpec.describe GroupDecorator do
   end
 
   describe '#user_count' do
-    it 'グループに参加しているユーザー数が3人の時を3返す' do
+    it 'グループに参加しているユーザー数が4人の時を4を返す' do
+      # グループを作成した地点でオーナーは参加者に含まれる
       group = create(:group)
       create_list(:group_user, 3, group:)
-      expect(group.decorate.user_count).to eq 3
+      expect(group.decorate.user_count).to eq 4
     end
   end
 end
