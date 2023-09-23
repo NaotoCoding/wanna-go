@@ -2,7 +2,9 @@ class InvitesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_group, only: [:new, :create]
 
-  def index; end
+  def index
+    @unconfirmed_invites = current_user.received_invites.unanswered
+  end
 
   def new; end
 
