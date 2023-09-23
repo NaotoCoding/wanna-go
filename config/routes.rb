@@ -9,5 +9,7 @@ Rails.application.routes.draw do
       resources :accepted_invites, only: [:create]
       resources :rejected_invites, only: [:create]
     end
+
+    resources :places, only: [:new, :create]
   end
 end
