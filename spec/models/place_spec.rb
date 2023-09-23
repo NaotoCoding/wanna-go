@@ -30,5 +30,19 @@ RSpec.describe Place, type: :model do
         expect(build(:place)).to be_valid 
       end
     end
+
+    context '異常なパラメータの場合' do
+      it 'nameがnilの時、placeは無効' do
+        expect(build(:place, name: nil)).to be_invalid
+      end
+
+      it 'nameが空文字の時、placeは無効' do
+        expect(build(:place, name: '')).to be_invalid
+      end
+
+      it 'nameが31文字以上の時、placeは無効' do
+        expect(build(:place, name: 'a' * 31)).to be_invalid
+      end
+    end
   end
 end
