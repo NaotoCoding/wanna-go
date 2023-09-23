@@ -20,6 +20,9 @@
 #  index_users_on_unique_code           (unique_code) UNIQUE
 #
 class User < ApplicationRecord
+  has_many :group_users, dependent: :destroy
+  has_many :belonging_groups, through: :group_users, source: :group
+
   validates :name, presence: true
   validates :unique_code, presence: true, uniqueness: true, length: { minimum: 5, maximum: 30 }
 

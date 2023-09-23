@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Groups', type: :request do
+RSpec.describe 'BelongingGroups', type: :request do
   describe 'ログインせずにアクションを実行した場合' do
     it 'ログイン画面にリダイレクトされる' do
       get root_path

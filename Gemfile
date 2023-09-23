@@ -7,6 +7,7 @@ gem 'bootsnap', require: false
 gem 'cssbundling-rails'
 gem 'devise'
 gem 'devise-i18n'
+gem 'draper'
 gem 'importmap-rails'
 gem 'pg', '~> 1.1'
 gem 'puma', '~> 5.0'
