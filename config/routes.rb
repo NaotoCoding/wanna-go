@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   resources :invites, only: [:index]
 
   resources :groups, only: [:show, :new, :create] do
-    resources :invites, only: [:new, :create]
+    resources :invites, only: [:new, :create] do
+      resources :accepted_invites, only: [:create]
+    end
   end
 end
