@@ -21,4 +21,11 @@
 class Invite < ApplicationRecord
   belongs_to :user
   belongs_to :group
+  
+  has_many :accepted_invites, dependent: :destroy
+  has_many :rejected_invites, dependent: :destroy
+
+  scope :accepted, -> { where.associated(:accepted_invites) }
+  scope :rejected, -> { where.associated(:rejected_invites) }
+  scope :unconfirmed , -> { where.missing(:accepted_invites).where.missing(:rejected_invites) }
 end
