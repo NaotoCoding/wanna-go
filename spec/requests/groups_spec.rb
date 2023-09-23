@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Groups", type: :request do
+RSpec.describe 'Groups', type: :request do
   describe 'ログインせずにアクションを実行した場合' do
     it 'ログイン画面にリダイレクトされる' do
       get root_path
@@ -8,7 +8,7 @@ RSpec.describe "Groups", type: :request do
     end
   end
 
-  describe "GET /" do
+  describe 'GET /' do
     it 'ログインしているユーザーが参加中のグループ一覧画面が表示される' do
       sign_in create(:user)
       get root_path
