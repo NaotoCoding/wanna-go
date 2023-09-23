@@ -23,4 +23,12 @@ RSpec.describe 'Groups', type: :request do
       expect(response).to have_http_status 200
     end
   end
+
+  describe 'GET /groups/new' do
+    it 'グループ作成画面が表示される' do
+      sign_in create(:user)
+      get new_group_path
+      expect(response).to have_http_status 200
+    end
+  end
 end
