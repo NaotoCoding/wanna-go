@@ -10,30 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_11_154525) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_23_074426) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "group_users", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "group_id", null: false
-    t.boolean "accepted", default: false, null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["group_id"], name: "index_group_users_on_group_id"
-    t.index ["user_id"], name: "index_group_users_on_user_id"
-  end
-
-  create_table "groups", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.string "name", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_groups_on_user_id"
-  end
-
   create_table "users", force: :cascade do |t|
-    t.string "unique_code", null: false
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -43,24 +24,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_11_154525) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-    t.index ["unique_code"], name: "index_users_on_unique_code", unique: true
   end
 
-  create_table "wants", force: :cascade do |t|
-    t.bigint "group_id", null: false
-    t.bigint "user_id", null: false
-    t.string "title"
-    t.string "uri"
-    t.text "description"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["group_id"], name: "index_wants_on_group_id"
-    t.index ["user_id"], name: "index_wants_on_user_id"
-  end
-
-  add_foreign_key "group_users", "groups"
-  add_foreign_key "group_users", "users"
-  add_foreign_key "groups", "users"
-  add_foreign_key "wants", "groups"
-  add_foreign_key "wants", "users"
 end
