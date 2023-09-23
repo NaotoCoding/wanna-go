@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "GroupUsers", type: :request do
+RSpec.describe 'GroupUsers', type: :request do
   describe 'ログインせずにアクションを実行した場合' do
     it 'ログイン画面にリダイレクトされる' do
       group = create(:group)
