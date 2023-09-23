@@ -35,6 +35,14 @@ RSpec.describe User, type: :model do
         expect(build(:user, unique_code: 'duplicated_unique_code')).to be_invalid
       end
 
+      it 'unique_codeが5文字より短い文字列の時、userは無効' do
+        expect(build(:user, unique_code: 'uniq')).to be_invalid
+      end
+
+      it 'unique_codeが30文字より長い文字列の時、userは無効' do
+        expect(build(:user, unique_code: 'a' * 31)).to be_invalid
+      end
+
       where(:key, :value) do
         [
           [:name, nil],

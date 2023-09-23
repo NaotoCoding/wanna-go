@@ -21,7 +21,7 @@
 #
 class User < ApplicationRecord
   validates :name, presence: true
-  validates :unique_code, presence: true, uniqueness: true
+  validates :unique_code, presence: true, uniqueness: true, length: { minimum: 5, maximum: 30 }
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
