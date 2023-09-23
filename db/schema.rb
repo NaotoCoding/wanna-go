@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_23_144557) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_23_194837) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -47,6 +47,18 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_23_144557) do
     t.index ["user_id"], name: "index_invites_on_user_id"
   end
 
+  create_table "places", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "group_id", null: false
+    t.string "name", null: false
+    t.string "description"
+    t.string "url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["group_id"], name: "index_places_on_group_id"
+    t.index ["user_id"], name: "index_places_on_user_id"
+  end
+
   create_table "rejected_invites", force: :cascade do |t|
     t.bigint "invite_id", null: false
     t.datetime "created_at", null: false
@@ -75,5 +87,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_23_144557) do
   add_foreign_key "groups", "users", column: "owner_id"
   add_foreign_key "invites", "groups"
   add_foreign_key "invites", "users"
+  add_foreign_key "places", "groups"
+  add_foreign_key "places", "users"
   add_foreign_key "rejected_invites", "invites"
 end
