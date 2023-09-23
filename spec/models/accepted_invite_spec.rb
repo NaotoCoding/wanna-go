@@ -18,5 +18,9 @@
 require 'rails_helper'
 
 RSpec.describe AcceptedInvite, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe 'バリデーション' do
+    it '正常なパラメータの時、accepted_inviteは有効' do
+      expect(build(:accepted_invite)).to be_valid
+    end
+  end
 end
