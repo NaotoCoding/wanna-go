@@ -28,5 +28,22 @@ RSpec.describe User, type: :model do
         expect(build(:user)).to be_valid
       end
     end
+
+    context '異常なパラメータの場合' do
+      where(:key, :value) do
+        [
+          [:name, nil],
+          [:name, ''],
+          [:unique_code, nil],
+          [:unique_code, '']
+        ]
+      end
+
+      with_them do
+        it "#{params[:key]}が#{params[:value]}の時、userは無効" do
+          expect(build(:user, key => value)).to be_invalid
+        end
+      end
+    end
   end
 end
