@@ -38,4 +38,11 @@ RSpec.describe Invite, type: :model do
       expect { invite.accept! }.to change(GroupUser, :count).by(1)
     end
   end
+
+  describe '#reject!' do
+    it 'rejected_invitesテーブルにレコードが保存される' do
+      invite = create(:invite)
+      expect { invite.reject! }.to change(RejectedInvite, :count).by(1)
+    end
+  end
 end
