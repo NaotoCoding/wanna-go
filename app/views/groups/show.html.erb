@@ -1,3 +1,28 @@
-<%= @group.name %>
-
-<%= link_to 'ユーザー招待', new_group_invite_path(@group), class: 'btn btn-success' %>
+<div class='mx-3'>
+  <h4 class='text-center mb-3'><%= @group.name %></h4>
+  <div class='mb-3 d-flex justify-content-center w-75 mx-auto'>
+    <%= link_to '行きたいところ登録', new_group_place_path(@group), class: 'btn btn-success' %>
+  </div>
+  <h5 class='text-center mb-3'>行きたいところ一覧</h5>
+  <table class='table'>
+    <thead>
+      <tr>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @places.each do |place| %>
+        <tr class='align-middle'>
+          <td><%= place.name %></td>
+          <td class='text-end'>
+            <button type='button' class='btn btn-primary' data-bs-toggle='modal' data-bs-target="#place-<%= place.id %>">
+              詳細
+            </button>
+          </td>
+        </tr>
+        <%= render 'places/detail_modal', place: %>
+      <% end %>
+    </tbody>
+  </table>
+</div>
