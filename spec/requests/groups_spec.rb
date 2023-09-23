@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Groups", type: :request do
+RSpec.describe 'Groups', type: :request do
   describe 'ログインせずにアクションを実行した場合' do
     it 'ログイン画面にリダイレクトされる' do
       group = create(:group)
@@ -9,12 +9,12 @@ RSpec.describe "Groups", type: :request do
     end
   end
 
-  describe "GET /groups/:id" do
+  describe 'GET /groups/:id' do
     let(:group) { create(:group) }
 
     before do
       user = create(:user)
-      create(:group_user, user: user, group: group)
+      create(:group_user, user:, group:)
       sign_in user
     end
 
