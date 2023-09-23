@@ -27,5 +27,5 @@ class Invite < ApplicationRecord
 
   scope :accepted, -> { where.associated(:accepted_invites) }
   scope :rejected, -> { where.associated(:rejected_invites) }
-  scope :unconfirmed , -> { where.missing(:accepted_invites).where.missing(:rejected_invites) }
+  scope :unanswered , -> { where.missing(:accepted_invites).where.missing(:rejected_invites) }
 end
