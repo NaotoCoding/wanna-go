@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :groups, only: [:show, :new, :create] do
     resources :invites, only: [:new, :create] do
       resources :accepted_invites, only: [:create]
+      resources :rejected_invites, only: [:create]
     end
   end
 end

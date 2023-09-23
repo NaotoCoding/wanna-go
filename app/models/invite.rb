@@ -33,4 +33,8 @@ class Invite < ApplicationRecord
     accepted_invites.create!
     group.group_users.create!(user:)
   end
+
+  def reject!
+    rejected_invites.create!
+  end
 end
