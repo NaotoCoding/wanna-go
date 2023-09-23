@@ -1,0 +1,14 @@
+ja:
+  activerecord:
+    models:
+      user: ユーザー
+      group: グループ
+    attributes:
+      user:
+        name: ユーザーネーム
+        email: メールアドレス
+        password: パスワード
+        password_confirmation: パスワード確認
+        unique_code: ユーザーコード
+      group:
+        name: グループ名

@@ -20,6 +20,7 @@
 #  index_users_on_unique_code           (unique_code) UNIQUE
 #
 class User < ApplicationRecord
+  has_many :owned_groups, class_name: 'Group', foreign_key: :owner_id, dependent: :destroy, inverse_of: :owner
   has_many :group_users, dependent: :destroy
   has_many :belonging_groups, through: :group_users, source: :group
 
