@@ -1,12 +1,15 @@
-<%= form_with model: @group do |f| %>
-  <% input_errors = @group.errors.objects %>
-  <% if input_errors.present? %>
-    <% input_errors.each do |error| %>
-      <%= error.full_message %>
+<%= turbo_frame_tag 'new_group' do %>
+  <%= form_with model: @group do |f| %>
+    <% input_errors = @group.errors.objects %>
+    <% if input_errors.present? %>
+      <% input_errors.each do |error| %>
+        <%= error.full_message %>
+      <% end %>
     <% end %>
-  <% end %>
 
-  <%= f.label :name, 'グループ名' %>
-  <%= f.text_field :name, class: 'form-control' %>
-  <%= f.submit %>
+    <%= f.label :name, 'グループ名' %>
+    <%= f.text_field :name, class: 'form-control' %>
+    <%= f.submit %>
+  <% end %>
+  <%= link_to 'キャンセル', root_path %>
 <% end %>

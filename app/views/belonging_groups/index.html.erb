@@ -1,3 +1,9 @@
+<h4>グループ作成</h4>
+<%= turbo_frame_tag 'new_group' do %>
+  <%= link_to 'フォームを開く', new_group_path %>
+<% end %>
+
+<h4>参加中のグループ一覧</h4>
 <table class="table">
   <thead>
     <tr>
