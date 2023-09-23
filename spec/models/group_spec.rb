@@ -27,6 +27,10 @@ RSpec.describe Group, type: :model do
     end
 
     context '異常なパラメータの場合' do
+      it 'ownerとしてuserと関連がない時、groupは無効' do
+        expect(build(:group, owner: nil)).to be_invalid
+      end
+
       it 'nameがnilの時、groupは無効' do
         expect(build(:group, name: nil)).to be_invalid
       end

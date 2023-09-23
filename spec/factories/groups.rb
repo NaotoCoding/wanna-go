@@ -18,7 +18,7 @@
 #
 FactoryBot.define do
   factory :group do
-    user
+    association :owner, factory: :user
     name { 'テストグループ' }
   end
 end
