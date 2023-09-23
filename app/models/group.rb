@@ -21,4 +21,6 @@ class Group < ApplicationRecord
   has_many :group_users, dependent: :destroy
 
   validates :name, presence: true
+
+  after_create { group_users.create!(user: owner) }
 end
