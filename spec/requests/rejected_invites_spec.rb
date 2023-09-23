@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "RejectedInvites", type: :request do
+RSpec.describe 'RejectedInvites', type: :request do
   describe 'ログインせずにアクションを実行した場合' do
     it 'ログイン画面にリダイレクトされる' do
       post group_invite_rejected_invites_path(create(:group), create(:invite))
