@@ -1,13 +1,15 @@
-<h4>ユーザー招待</h4>
+<div class='w-75 mx-auto text-center mt-4'>
+  <h4>招待</h4>
 
-<p>招待したいユーザーのユーザーコードを入力してください</p>
+  <p class='mb-4'>招待するユーザーのユーザーコードを入力</p>
 
-<%= form_with url: group_invites_path(@group) do |f| %>
-  <div class='mb-2'>
-    <%= f.label :unique_code, 'ユーザーコード', class: 'fw-bolder' %>
-    <%= f.text_field :unique_code, class: 'form-control' %>
-  </div>
+  <%= form_with url: group_invites_path(@group) do |f| %>
+    <div class='mb-3'>
+      <%= f.label :unique_code, 'ユーザーコード', class: 'fw-bolder mb-2' %>
+      <%= f.text_field :unique_code, class: 'form-control' %>
+    </div>
 
-  <%= f.submit '招待する', class: 'btn btn-success' %>
-  <%= link_to 'キャンセル', group_path(@group), class: 'btn btn-secondary' %>
-<% end %>
+    <%= f.submit '招待する', class: 'btn btn-success me-4' %>
+    <%= link_to 'キャンセル', group_path(@group), class: 'btn btn-secondary' %>
+  <% end %>
+</div>

@@ -1,28 +1,23 @@
-<div class='mb-4'>
-  <h4>グループ作成</h4>
-  <%= turbo_frame_tag 'new_group' do %>
-    <%= link_to 'フォームを開く', new_group_path, class: 'btn btn-primary' %>
-  <% end %>
+<div class='mb-4 d-flex justify-content-center w-75 mx-auto'>
+  <%= link_to '新しいグループをつくる', new_group_path, class: 'btn btn-success' %>
 </div>
 
-<div>
-  <h4>参加中のグループ一覧</h4>
-  <table class="table">
+<div class='mx-3'>
+  <h4 class='text-center mb-4'>参加中のグループ一覧</h4>
+  <table class='table'>
     <thead>
       <tr>
         <th>グループ名</th>
         <th>オーナー</th>
-        <th>人数</th>
-        <th></th>
+        <th class='text-end'>人数</th>
       </tr>
     </thead>
     <tbody>
       <% @belonging_groups.each do |belonging_group| %>
         <tr class='align-middle'>
-          <td><%= belonging_group.name %></td>
+          <td><%= link_to belonging_group.name, group_path(belonging_group), class: 'text-decoration-none' %></td>
           <td><%= belonging_group.decorate.owner_name %></td>
-          <td><%= belonging_group.decorate.user_count %></td>
-          <td><%= link_to 'みる', group_path(belonging_group), class: 'btn btn-success' %></td>
+          <td class='text-end'><%= belonging_group.decorate.user_count %></td>
         </tr>
       <% end %>
     </tbody>

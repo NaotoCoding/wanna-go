@@ -1,15 +1,17 @@
-<h4>未回答招待一覧</h4>
+<div class='mx-3 mt-4'>
+  <h4 class='text-center mb-4'>未回答招待一覧</h4>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th>グループ名</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @unconfirmed_invites.each do |invite| %>
-      <%= render invite %>
-    <% end %>
-  </tbody>
-</table>
+  <table class='table'>
+    <thead>
+      <tr>
+        <th>グループ名</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @unconfirmed_invites.each do |invite| %>
+        <%= render invite %>
+      <% end %>
+    </tbody>
+  </table>
+</div>
