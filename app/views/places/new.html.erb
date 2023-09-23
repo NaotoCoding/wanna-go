@@ -1,5 +1,7 @@
 <%= render 'groups/second_header', group: @group %>
 
+<h4 class='text-center mb-3'><%= @group.name %></h4>
+
 <div class='w-75 mx-auto text-center mt-4'>
   <%= form_with model: @place, url: group_places_path(@group) do |f| %>
     <div class='mb-2'>
