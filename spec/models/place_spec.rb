@@ -27,7 +27,7 @@ RSpec.describe Place, type: :model do
   describe 'バリデーション' do
     context '正常なパラメータの場合' do
       it 'placeは有効' do
-        expect(build(:place)).to be_valid 
+        expect(build(:place)).to be_valid
       end
     end
 
