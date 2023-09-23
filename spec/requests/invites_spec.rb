@@ -8,6 +8,14 @@ RSpec.describe 'Invites', type: :request do
     end
   end
 
+  describe 'GET /invites' do
+    it '未確認招待一覧画面が表示される' do
+      sign_in create(:user)
+      get invites_path
+      expect(response).to have_http_status 200
+    end
+  end
+
   describe 'GET /groups/:group_id/invites/new' do
     let(:user) { create(:user) }
     let(:group) { create(:group) }
