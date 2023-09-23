@@ -11,11 +11,11 @@ gem 'importmap-rails'
 gem 'pg', '~> 1.1'
 gem 'puma', '~> 5.0'
 gem 'rails', '~> 7.0.8'
+gem 'rails-i18n'
 gem 'sprockets-rails'
 gem 'stimulus-rails'
 gem 'turbo-rails'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
-gem 'rails-i18n'
 
 group :development, :test do
   gem 'debug', platforms: %i[mri mingw x64_mingw]
