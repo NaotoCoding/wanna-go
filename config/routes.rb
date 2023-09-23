@@ -2,5 +2,5 @@ Rails.application.routes.draw do
   devise_for :users
   root 'belonging_groups#index'
 
-  resources :groups, only: [:show, :new]
+  resources :groups, only: [:show, :new, :create]
 end
