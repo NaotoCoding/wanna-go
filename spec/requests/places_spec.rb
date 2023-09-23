@@ -10,8 +10,9 @@ RSpec.describe "Places", type: :request do
 
   describe 'GET /groups/:group_id/places/new' do
     it '行きたい場所作成画面が表示される' do
-      sign_in create(:user)
-      get new_group_place_path(create(:group))
+      user = create(:user)
+      sign_in user
+      get new_group_place_path(create(:group, owner: user))
       expect(response).to have_http_status 200
     end
   end

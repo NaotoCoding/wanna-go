@@ -1,4 +1,4 @@
-<div class='w-50 mx-auto text-center mt-4'>
+<div class='w-75 mx-auto text-center mt-4'>
   <h4>グループ作成</h4>
   <%= form_with model: @group do |f| %>
     <div class='mb-2'>
@@ -16,7 +16,7 @@
     </div>
 
     <div class='d-flex justify-content-center'>
-      <%= f.submit class: 'btn btn-success me-4', data: { turbo: false } %>
+      <%= f.submit class: 'btn btn-success me-4' %>
       <%= link_to 'キャンセル', root_path, class: 'btn btn-secondary' %>
     </div>
   <% end %>
