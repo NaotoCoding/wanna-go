@@ -34,6 +34,10 @@ module WannaGo
     config.i18n.default_locale = :ja
 
     config.generators do |g|
+      g.helper false
+    end
+
+    config.generators do |g|
       g.test_framework :rspec,
         request_specs: true,
         model_specs: true,
