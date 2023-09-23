@@ -1,0 +1,18 @@
+<div class='w-75 mx-auto text-center mt-4'>
+  <h4 class='mb-3'>マイページ</h4>
+
+  <div class='mb-3'>
+    <p class='fw-bolder'>ユーザー名</p>
+    <%= current_user.name %>
+  </div>
+
+  <div class='mb-3'>
+    <p class='fw-bolder'>メールアドレス</p>
+    <%= current_user.email %>
+  </div>
+
+  <div>
+    <p class='fw-bolder'>ユーザーコード</p>
+    <%= current_user.unique_code %>
+  </div>
+</div>
