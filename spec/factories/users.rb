@@ -24,5 +24,7 @@ FactoryBot.define do
     sequence(:email) { |n| "test#{n}@example.com" }
     password { 'password' }
     password_confirmation { 'password' }
+    name { 'テストユーザー' }
+    sequence(:unique_code) { |n| "unique_code#{n}" }
   end
 end
