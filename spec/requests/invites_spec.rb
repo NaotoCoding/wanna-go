@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Invites", type: :request do
+RSpec.describe 'Invites', type: :request do
   describe 'ログインせずにアクションを実行した場合' do
     it 'ログイン画面にリダイレクトされる' do
       get new_group_invite_path(create(:group))
@@ -8,11 +8,70 @@ RSpec.describe "Invites", type: :request do
     end
   end
 
-  describe "GET /groups/:group_id/invites/new" do
+  describe 'GET /groups/:group_id/invites/new' do
+    let(:user) { create(:user) }
+    let(:group) { create(:group) }
+
+    before do
+      sign_in user
+      create(:group_user, user:, group:)
+    end
+
     it '招待作成画面が表示される' do
-      sign_in create(:user)
-      get new_group_invite_path(create(:group))
+      get new_group_invite_path(group)
       expect(response).to have_http_status 200
+    end
+  end
+
+  describe 'POST /groups/:group_id/invites' do
+    let(:inviter) { create(:user) }
+    let(:invitee) { create(:user) }
+    let(:group) { create(:group) }
+
+    before do
+      sign_in inviter
+      create(:group_user, user: inviter, group:)
+    end
+
+    subject(:post_invite) { post group_invites_path(group), params: invite_params }
+
+    context '正常なパラメータの場合' do
+      let(:invite_params) { { unique_code: invitee.unique_code } }
+
+      it 'inviteが保存される' do
+        expect { subject }.to change { Invite.count }.by(1)
+      end
+
+      it 'グループ詳細画面にリダイレクトされる' do
+        subject
+        expect(response).to redirect_to group_path(group)
+      end
+    end
+
+    context '存在しないユーザーのunique_codeを入力した場合' do
+      let(:invite_params) { { unique_code: 'invalid_unique_code' } }
+
+      it 'inviteが保存されない' do
+        expect { subject }.not_to(change { Invite.count })
+      end
+
+      it 'バリデーションエラーが返る' do
+        subject
+        expect(response).to have_http_status 422
+      end
+    end
+
+    context '既にグループに参加しているユーザーのunique_codeを入力した場合' do
+      let(:invite_params) { { unique_code: inviter.unique_code } }
+
+      it 'inviteが保存されない' do
+        expect { subject }.not_to(change { Invite.count })
+      end
+
+      it 'バリデーションエラーが返る' do
+        subject
+        expect(response).to have_http_status 422
+      end
     end
   end
 end
