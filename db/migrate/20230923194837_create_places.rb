@@ -3,7 +3,7 @@ class CreatePlaces < ActiveRecord::Migration[7.0]
     create_table :places do |t|
       t.references :user, null: false, foreign_key: true
       t.references :group, null: false, foreign_key: true
-      t.string :name
+      t.string :name, null: false
       t.string :description
       t.string :url
 
