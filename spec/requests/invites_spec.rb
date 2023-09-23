@@ -39,7 +39,7 @@ RSpec.describe 'Invites', type: :request do
       let(:invite_params) { { unique_code: invitee.unique_code } }
 
       it 'inviteが保存される' do
-        expect { subject }.to change { Invite.count }.by(1)
+        expect { subject }.to change(Invite, :count).by(1)
       end
 
       it 'グループ詳細画面にリダイレクトされる' do
@@ -52,7 +52,7 @@ RSpec.describe 'Invites', type: :request do
       let(:invite_params) { { unique_code: 'invalid_unique_code' } }
 
       it 'inviteが保存されない' do
-        expect { subject }.not_to(change { Invite.count })
+        expect { subject }.not_to(change(Invite, :count))
       end
 
       it 'バリデーションエラーが返る' do
@@ -65,7 +65,7 @@ RSpec.describe 'Invites', type: :request do
       let(:invite_params) { { unique_code: inviter.unique_code } }
 
       it 'inviteが保存されない' do
-        expect { subject }.not_to(change { Invite.count })
+        expect { subject }.not_to(change(Invite, :count))
       end
 
       it 'バリデーションエラーが返る' do
