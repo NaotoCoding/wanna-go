@@ -25,5 +25,15 @@ RSpec.describe Group, type: :model do
         expect(build(:group)).to be_valid
       end
     end
+
+    context '異常なパラメータの場合' do
+      it 'nameがnilの時、groupは無効' do
+        expect(build(:group, name: nil)).to be_invalid
+      end
+
+      it 'nameが空文字の時、groupは無効' do
+        expect(build(:group, name: '')).to be_invalid
+      end
+    end
   end
 end
