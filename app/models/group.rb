@@ -17,7 +17,7 @@
 #  fk_rails_...  (owner_id => users.id)
 #
 class Group < ApplicationRecord
-  belongs_to :user
+  belongs_to :owner, class_name: 'User', foreign_key: 'owner_id'
 
   validates :name, presence: true
 end
