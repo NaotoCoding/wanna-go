@@ -1,5 +1,11 @@
 <% group = invite.group %>
 
-<tr>
+<tr class='align-middle'>
   <td><%= group.name %></td>
+  <td>
+    <%= link_to '承認', group_invite_accepted_invites_path(group, invite),
+      data: { 'turbo-method': :post },
+      class: 'btn btn-success' 
+    %>
+  </td>
 </tr>
