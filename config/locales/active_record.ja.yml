@@ -16,3 +16,9 @@ ja:
         name: 行きたいところ
         url: サイト等のURL
         description: 簡単な説明
+  activemodel:
+    errors:
+      models:
+        invite_form:
+          already_member: '既に参加しているユーザーです'
+          not_found: 'ユーザーが見つかりませんでした'

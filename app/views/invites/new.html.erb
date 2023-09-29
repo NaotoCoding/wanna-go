@@ -7,6 +7,7 @@
 
   <p class='mb-4'>招待するユーザーのユーザーコードを入力</p>
 
+  <%= render 'shared/form_error_messages', model: @invite_form %>
   <%= form_with url: group_invites_path(@group) do |f| %>
     <div class='mb-3'>
       <%= f.label :unique_code, 'ユーザーコード', class: 'fw-bolder mb-2' %>
