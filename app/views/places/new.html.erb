@@ -5,12 +5,7 @@
 <div class='w-75 mx-auto text-center mt-4'>
   <%= form_with model: @place, url: group_places_path(@group) do |f| %>
     <div class='mb-2'>
-      <% input_errors = @place.errors.objects %>
-      <% if input_errors.present? %>
-        <% input_errors.each do |error| %>
-          <p class='text-danger'><%= error.full_message %></p>
-        <% end %>
-      <% end %>
+      <%= render 'shared/form_error_messages', model: @place %>
     </div>
 
     <div class='mb-3'>

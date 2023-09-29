@@ -2,12 +2,7 @@
   <h4>グループ作成</h4>
   <%= form_with model: @group do |f| %>
     <div class='mb-2'>
-      <% input_errors = @group.errors.objects %>
-      <% if input_errors.present? %>
-        <% input_errors.each do |error| %>
-          <p class='text-danger'><%= error.full_message %></p>
-        <% end %>
-      <% end %>
+      <%= render 'shared/form_error_messages', model: @group %>
     </div>
 
     <div class='mb-3'>
