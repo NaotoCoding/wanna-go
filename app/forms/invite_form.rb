@@ -2,7 +2,7 @@ class InviteForm
   include ActiveModel::Model
 
   def initialize(group, user)
-    raise ArgumentError, 'グループは必須です' if group.blank?
+    raise ArgumentError, 'グループが存在しません' unless group&.persisted?
 
     @group = group
     @user = user

@@ -9,7 +9,7 @@ RSpec.describe 'InviteForm' do
       expect(InviteForm.new(group, user)).to be_truthy
     end
 
-    it 'グループがない場合、ArgumentErrorが発生する' do
+    it 'グループがDBに存在しない場合、ArgumentErrorが発生する' do
       expect { InviteForm.new(nil, user) }.to raise_error(ArgumentError)
     end
   end
