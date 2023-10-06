@@ -1,5 +1,14 @@
-<header class='d-flex justify-content-evenly border-bottom pb-3 mb-4 mt-3 align-items-center'>
-  <%= link_to 'わ', root_path, class: 'me-5 text-dark text-decoration-none fs-3' %>
-  <%= link_to 'グループ', root_path, class: 'me-5 text-decoration-none' %>
-  <%= link_to '招待', invites_path, class: 'text-decoration-none' %>
+<header class='d-flex flex-column border-bottom ps-3 pe-3 pb-3 mb-4 mt-3'>
+  <div class='mb-3 d-flex justify-content-between'>
+    <%= link_to root_path do %>
+      <%= image_tag 'logo.svg' %>
+    <% end %>
+    <div class='d-flex align-items-center me-3'>
+      <%= link_to current_user.name, me_path, class: "me-5 #{ header_link_class_names(me_path) }" %>
+    </div>
+  </div>
+  <div class='d-flex ms-2'>
+    <%= link_to 'グループ', root_path, class: "me-5 #{ header_link_class_names(root_path) }" %>
+    <%= link_to '招待', invites_path, class: header_link_class_names(invites_path) %>
+  </div>
 </header>
