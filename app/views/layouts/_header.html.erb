@@ -1,10 +1,8 @@
 <header class='d-flex flex-column border-bottom ps-3 pe-3 pb-3 mb-4 mt-3'>
   <div class='mb-3 d-flex justify-content-between'>
-    <div>
-      <%= link_to root_path do %>
-        <%= image_tag 'logo.svg' %>
-      <% end %>
-    </div>
+    <%= link_to root_path do %>
+      <%= image_tag 'logo.svg' %>
+    <% end %>
     <div class='d-flex align-items-center me-3'>
       <%= link_to current_user.name, me_path, class: "me-5 #{ header_link_class_names(me_path) }" %>
     </div>
