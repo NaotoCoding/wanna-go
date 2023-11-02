@@ -68,4 +68,13 @@ RSpec.describe Group, type: :model do
       expect(group.owner?(user)).to be false
     end
   end
+
+  describe '#number_of_members' do
+    it 'グループに参加しているユーザー数が4人の時を4を返す' do
+      # グループを作成した地点でオーナーは参加者に含まれる
+      group = create(:group)
+      create_list(:group_user, 3, group:)
+      expect(group.number_of_members).to eq 4
+    end
+  end
 end
