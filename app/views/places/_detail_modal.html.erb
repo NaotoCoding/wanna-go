@@ -6,9 +6,11 @@
         <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
       </div>
       <div class='modal-body'>
-        <%= link_to 'サイトへ', place.url, target: :_blank, class: 'text-decoration-none' %>
-        <hr>
-        <%= place.description %>
+        <% if place.url.present? %>
+          <%= link_to 'サイトへ', place.url, target: :_blank, class: 'text-decoration-none' %>
+          <hr>
+        <% end %>
+        <%= place.decorate.display_description %>
       </div>
     </div>
   </div>
