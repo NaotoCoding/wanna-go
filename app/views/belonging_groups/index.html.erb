@@ -17,7 +17,7 @@
         <tr class='align-middle'>
           <td><%= link_to belonging_group.name, group_path(belonging_group), class: 'text-decoration-none' %></td>
           <td><%= belonging_group.owner.name %></td>
-          <td class='text-end'><%= belonging_group.decorate.user_count %></td>
+          <td class='text-end'><%= belonging_group.number_of_members %></td>
         </tr>
       <% end %>
     </tbody>

@@ -34,4 +34,8 @@ class Group < ApplicationRecord
   def owner?(user)
     owner.id == user.id
   end
+
+  def number_of_members
+    group_users.count
+  end
 end
