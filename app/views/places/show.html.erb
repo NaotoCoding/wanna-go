@@ -10,4 +10,9 @@
 
 <%= @place.decorate.display_description %>
 
+<%= button_to '行った！', group_place_visited_places_path(@group, @place),
+  class: 'btn btn-warning',
+  data: { turbo_confirm: '本当に登録しますか？' }
+%>
+
 <%= link_to '行きたいところ一覧へ', group_path(@group), class: 'btn btn-success' %>
