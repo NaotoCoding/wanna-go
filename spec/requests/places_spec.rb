@@ -8,6 +8,16 @@ RSpec.describe 'Places', type: :request do
     end
   end
 
+  describe 'GET /groups/:group_id/places/:id' do
+    it '行きたい場所詳細画面が表示される' do
+      user = create(:user)
+      sign_in user
+      place = create(:place, group: create(:group, owner: user), user:)
+      get group_place_path(place.group, place)
+      expect(response).to have_http_status 200
+    end
+  end
+
   describe 'GET /groups/:group_id/places/new' do
     it '行きたい場所作成画面が表示される' do
       user = create(:user)
