@@ -48,8 +48,8 @@ RSpec.describe Place, type: :model do
 
   describe '#visited!' do
     let(:owner) { create(:user) }
-    let(:group) { create(:group, owner: owner) }
-    let(:place) { create(:place, group: group) }
+    let(:group) { create(:group, owner:) }
+    let(:place) { create(:place, group:) }
 
     it 'visited_placesテーブルのレコードが保存される' do
       expect { place.visited!(owner) }.to change(VisitedPlace, :count).by(1)
