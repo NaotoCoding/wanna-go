@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_23_194837) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_03_125515) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -81,6 +81,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_23_194837) do
     t.index ["unique_code"], name: "index_users_on_unique_code", unique: true
   end
 
+  create_table "visited_places", force: :cascade do |t|
+    t.bigint "place_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["place_id"], name: "index_visited_places_on_place_id"
+  end
+
   add_foreign_key "accepted_invites", "invites"
   add_foreign_key "group_users", "groups"
   add_foreign_key "group_users", "users"
@@ -90,4 +97,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_23_194837) do
   add_foreign_key "places", "groups"
   add_foreign_key "places", "users"
   add_foreign_key "rejected_invites", "invites"
+  add_foreign_key "visited_places", "places"
 end
