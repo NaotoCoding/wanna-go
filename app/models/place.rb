@@ -28,6 +28,8 @@ class Place < ApplicationRecord
 
   validates :name, presence: true, length: { maximum: 30 }
 
+  scope :not_visited, -> { where.missing(:visited_place) }
+
   def visited!(resistrant)
     raise ArgumentError, 'グループ外ユーザーは訪問済みにできません' unless group.member?(resistrant)
 

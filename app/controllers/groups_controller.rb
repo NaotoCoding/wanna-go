@@ -3,7 +3,7 @@ class GroupsController < ApplicationController
 
   def show
     @group = current_user.belonging_groups.find(params[:id])
-    @places = @group.places
+    @places = @group.places.not_visited
   end
 
   def new

@@ -3,7 +3,7 @@ class PlacesController < ApplicationController
   before_action :set_group, only: [:show, :new, :create]
 
   def show
-    @place = @group.places.find(params[:id])
+    @place = @group.places.not_visited.find(params[:id])
   end
 
   def new
