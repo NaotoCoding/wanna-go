@@ -45,4 +45,18 @@ RSpec.describe Place, type: :model do
       end
     end
   end
+
+  describe '#visited!' do
+    let(:owner) { create(:user) }
+    let(:group) { create(:group, owner: owner) }
+    let(:place) { create(:place, group: group) }
+
+    it 'visited_placesテーブルのレコードが保存される' do
+      expect { place.visited!(owner) }.to change(VisitedPlace, :count).by(1)
+    end
+
+    it 'グループメンバーではないユーザーが引数の時、ArgumentErrorを発生させる' do
+      expect { place.visited!(create(:user)) }.to raise_error(ArgumentError)
+    end
+  end
 end
