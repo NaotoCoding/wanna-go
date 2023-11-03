@@ -17,6 +17,6 @@
 #
 FactoryBot.define do
   factory :visited_place do
-    place { nil }
+    place
   end
 end
