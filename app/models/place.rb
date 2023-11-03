@@ -24,6 +24,15 @@
 class Place < ApplicationRecord
   belongs_to :user
   belongs_to :group
+  has_one :visited_place, dependent: :destroy
 
   validates :name, presence: true, length: { maximum: 30 }
+
+  scope :not_visited, -> { where.missing(:visited_place) }
+
+  def visited!(resistrant)
+    raise ArgumentError, 'グループ外ユーザーは訪問済みにできません' unless group.member?(resistrant)
+
+    create_visited_place!
+  end
 end
