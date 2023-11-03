@@ -6,25 +6,12 @@
     <%= link_to '行きたいところ登録', new_group_place_path(@group), class: 'btn btn-success' %>
   </div>
   <h4 class='text-center mb-3'>行きたいところ一覧</h4>
-  <table class='table'>
-    <thead>
-      <tr>
-        <th></th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @places.each do |place| %>
-        <tr class='align-middle'>
-          <td><%= place.name %></td>
-          <td class='text-end'>
-            <button type='button' class='btn btn-primary' data-bs-toggle='modal' data-bs-target="#place-<%= place.id %>">
-              詳細
-            </button>
-          </td>
-        </tr>
-        <%= render 'places/detail_modal', place: %>
-      <% end %>
-    </tbody>
-  </table>
+  <% @places.each do |place| %>
+    <div class='card mb-4'>
+      <div class='card-body d-flex justify-content-between align-items-center'>
+        <h5 class='mb-0'><%= place.name %></h5>
+        <%= link_to '詳細', group_place_path(@group, place), class: 'btn btn-success' %>
+      </div>
+    </div>
+  <% end %>
 </div>

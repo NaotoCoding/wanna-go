@@ -1,6 +1,10 @@
 class PlacesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_group, only: [:new, :create]
+  before_action :set_group, only: [:show, :new, :create]
+
+  def show
+    @place = @group.places.find(params[:id])
+  end
 
   def new
     @place = Place.new

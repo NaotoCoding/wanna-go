@@ -1,0 +1,13 @@
+<%= render 'groups/second_header', group: @group %>
+
+<h4 class='text-center mb-3'><%= @group.name %></h4>
+
+<h5><%= @place.name %></h5>
+
+<% if @place.url.present? %>
+  <%= link_to 'サイトへ', @place.url, target: :_blank, class: 'text-decoration-none' %>
+<% end %>
+
+<%= @place.decorate.display_description %>
+
+<%= link_to '行きたいところ一覧へ', group_path(@group), class: 'btn btn-success' %>

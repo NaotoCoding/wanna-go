@@ -12,7 +12,7 @@ Rails.application.routes.draw do
       resources :rejected_invites, only: [:create]
     end
 
-    resources :places, only: [:new, :create]
+    resources :places, only: [:show, :new, :create]
     resources :group_users, only: [:index]
   end
 end
