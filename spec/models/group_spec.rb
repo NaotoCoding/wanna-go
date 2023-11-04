@@ -82,7 +82,7 @@ RSpec.describe Group, type: :model do
     let(:group) { create(:group) }
     let(:user) { create(:user) }
     let!(:invite) { create(:invite, group:, user:) }
-    
+
     it '全ての招待が回答済みの時、trueを返す' do
       invite.accept!
       expect(group.all_invites_answered?(user)).to be true
