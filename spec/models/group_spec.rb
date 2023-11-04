@@ -77,4 +77,19 @@ RSpec.describe Group, type: :model do
       expect(group.number_of_members).to eq 4
     end
   end
+
+  describe '#all_invites_answered?' do
+    let(:group) { create(:group) }
+    let(:user) { create(:user) }
+    let!(:invite) { create(:invite, group:, user:) }
+    
+    it '全ての招待が回答済みの時、trueを返す' do
+      invite.accept!
+      expect(group.all_invites_answered?(user)).to be true
+    end
+
+    it '未回答の招待が存在する時、falseを返す' do
+      expect(group.all_invites_answered?(user)).to be false
+    end
+  end
 end
