@@ -66,7 +66,7 @@ RSpec.describe 'Places', type: :request do
   describe 'GET /groups/:group_id/places/:id/edit' do
     it '行きたい場所編集画面が表示される' do
       owner = create(:user)
-      group = create(:group, owner: owner)
+      group = create(:group, owner:)
       sign_in owner
       get edit_group_place_path(group, create(:place, group:))
       expect(response).to have_http_status 200
@@ -79,7 +79,7 @@ RSpec.describe 'Places', type: :request do
     let(:place) { create(:place, group:, user: group.owner) }
 
     subject(:put_place) { put group_place_path(group, place), params: update_params }
-    
+
     before do
       create(:group_user, group:, user:)
       sign_in user
@@ -108,7 +108,7 @@ RSpec.describe 'Places', type: :request do
       let(:update_params) { { place: { name: '', description: '東京のお寺', url: 'https://www.senso-ji.jp/' } } }
 
       it '行きたい場所が更新されない' do
-        expect { put_place }.not_to change { place.reload.name }
+        expect { put_place }.not_to(change { place.reload.name })
       end
 
       it 'バリデーションエラーが返される' do
