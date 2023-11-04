@@ -1,20 +1,38 @@
 <%= render 'groups/second_header', group: @group %>
 
 <h4 class='text-center mb-3'><%= @group.name %></h4>
+<div class='mb-3 d-flex justify-content-center w-75 mx-auto'>
+  <%= link_to '行きたいところ一覧へ', group_path(@group), class: 'btn btn-success' %>
+</div>
+<h4 class='text-center mb-3'>行きたいところ詳細</h4>
 
-<h5><%= @place.name %></h5>
+<div class='w-75 mx-auto text-center mt-4'>
+  <div class='mb-2'>
+    <%= render 'shared/form_error_messages', model: @place %>
+  </div>
 
-<% if @place.url.present? %>
-  <%= link_to 'サイトへ', @place.url, target: :_blank, class: 'text-decoration-none' %>
-<% end %>
+  <div class='mb-3'>
+    <h5 class='fw-bolder mb-2'>行きたいところ</h5>
+    <p><%= @place.name %></p>
+  </div>
 
-<%= @place.decorate.display_description %>
+  <div class='mb-3'>
+    <% if @place.url.present? %>
+      <%= link_to 'サイトへ', @place.url, target: :_blank, class: 'text-decoration-none' %>
+    <% end %>
+  </div>
 
-<%= link_to '編集する', edit_group_place_path(@group, @place), class: 'btn btn-success' %>
+  <div>
+    <h5 class='fw-bolder mb-2'>簡単な説明</h5>
+    <%= @place.decorate.display_description %>
+  </div>
+</div>
 
-<%= button_to '行った！', group_place_visited_places_path(@group, @place),
-  class: 'btn btn-warning',
-  data: { turbo_confirm: '行った登録しますか？' }
-%>
+<div class='mt-5 text-center w-50 mx-auto'>
+  <%= link_to '編集する', edit_group_place_path(@group, @place), class: 'btn btn-success' %>
 
-<%= link_to '行きたいところ一覧へ', group_path(@group), class: 'btn btn-success' %>
+  <%= button_to '行った！', group_place_visited_places_path(@group, @place),
+    class: 'btn btn-warning mt-3',
+    data: { turbo_confirm: '行った登録しますか？' }
+  %>
+</div>
