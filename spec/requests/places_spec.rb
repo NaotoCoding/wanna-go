@@ -96,6 +96,12 @@ RSpec.describe 'Places', type: :request do
         put_place
         expect(response).to redirect_to group_place_url(group, place)
       end
+
+      it 'グループメンバー以外が更新しようとすると例外を発生させる' do
+        sign_out user
+        sign_in create(:user)
+        expect { put_place }.to raise_error(ActiveRecord::RecordNotFound)
+      end
     end
 
     context 'パラメータが異常な場合' do
