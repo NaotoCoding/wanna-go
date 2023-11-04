@@ -22,3 +22,4 @@ ja:
         invite_form:
           already_member: '既に参加しているユーザーです'
           not_found: 'ユーザーが見つかりませんでした'
+          present_unanswered_invite: 'ユーザーが招待に回答していません'

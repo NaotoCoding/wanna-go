@@ -38,4 +38,8 @@ class Group < ApplicationRecord
   def number_of_members
     group_users.count
   end
+
+  def all_invites_answered?(user)
+    invites.where(user:).unanswered.blank?
+  end
 end
