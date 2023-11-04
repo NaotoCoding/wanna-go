@@ -19,8 +19,9 @@ class InviteForm
     attr_reader :group, :user
 
     def invitable_user?
-      return add_error_and_return_false(:base, :not_found) if user.blank? || user.new_record?
+      return add_error_and_return_false(:base, :not_found) unless user&.persisted?
       return add_error_and_return_false(:base, :already_member) if group.member?(user)
+      return add_error_and_return_false(:base, :present_unanswered_invite) unless group.all_invites_answered?(user)
 
       true
     end

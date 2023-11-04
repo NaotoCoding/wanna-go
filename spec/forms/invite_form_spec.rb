@@ -36,5 +36,11 @@ RSpec.describe 'InviteForm' do
     it 'userがnilの時、invitesテーブルにレコードが作成されない' do
       expect { InviteForm.new(group, nil).save }.not_to(change(Invite, :count))
     end
+
+    it 'ユーザーに招待を送信済みかつ未回答の時、invitesテーブルにレコードが作成されない' do
+      user = create(:user)
+      create(:invite, group:, user:)
+      expect { InviteForm.new(group, user).save }.not_to(change(Invite, :count))
+    end
   end
 end
