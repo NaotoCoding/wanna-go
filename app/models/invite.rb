@@ -22,19 +22,19 @@ class Invite < ApplicationRecord
   belongs_to :user
   belongs_to :group
 
-  has_many :accepted_invites, dependent: :destroy
-  has_many :rejected_invites, dependent: :destroy
+  has_one :accepted_invite, dependent: :destroy
+  has_one :rejected_invite, dependent: :destroy
 
-  scope :accepted, -> { where.associated(:accepted_invites) }
-  scope :rejected, -> { where.associated(:rejected_invites) }
-  scope :unanswered, -> { where.missing(:accepted_invites).where.missing(:rejected_invites) }
+  scope :accepted, -> { where.associated(:accepted_invite) }
+  scope :rejected, -> { where.associated(:rejected_invite) }
+  scope :unanswered, -> { where.missing(:accepted_invite).where.missing(:rejected_invite) }
 
   def accept!
-    accepted_invites.create!
+    create_accepted_invite!
     group.group_users.create!(user:)
   end
 
   def reject!
-    rejected_invites.create!
+    create_rejected_invite!
   end
 end
