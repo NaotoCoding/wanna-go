@@ -1,7 +1,7 @@
 class PlacesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_group, only: [:show, :new, :create, :edit]
-  before_action :set_not_visited_place, only: [:show, :edit]
+  before_action :set_group, only: [:show, :new, :create, :edit, :update]
+  before_action :set_not_visited_place, only: [:show, :edit, :update]
 
   def show; end
 
@@ -20,6 +20,14 @@ class PlacesController < ApplicationController
   end
 
   def edit; end
+
+  def update
+    if @place.update(place_params)
+      redirect_to group_place_url(@group, @place)
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
 
   private
 

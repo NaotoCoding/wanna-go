@@ -72,4 +72,43 @@ RSpec.describe 'Places', type: :request do
       expect(response).to have_http_status 200
     end
   end
+
+  describe 'PUT /groups/:group_id/places/:id' do
+    let(:group) { create(:group) }
+    let(:user) { create(:user) }
+    let(:place) { create(:place, group:, user: group.owner) }
+
+    subject(:put_place) { put group_place_path(group, place), params: update_params }
+    
+    before do
+      create(:group_user, group:, user:)
+      sign_in user
+    end
+
+    context 'パラメータが正常な場合' do
+      let(:update_params) { { place: { name: '浅草寺', description: '東京のお寺', url: 'https://www.senso-ji.jp/' } } }
+
+      it 'グループメンバーは誰でも行きたい場所が更新できる' do
+        expect { put_place }.to change { place.reload.name }.from(place.name).to('浅草寺')
+      end
+
+      it '行きたい場所詳細画面にリダイレクトされる' do
+        put_place
+        expect(response).to redirect_to group_place_url(group, place)
+      end
+    end
+
+    context 'パラメータが異常な場合' do
+      let(:update_params) { { place: { name: '', description: '東京のお寺', url: 'https://www.senso-ji.jp/' } } }
+
+      it '行きたい場所が更新されない' do
+        expect { put_place }.not_to change { place.reload.name }
+      end
+
+      it 'バリデーションエラーが返される' do
+        put_place
+        expect(response).to have_http_status 422
+      end
+    end
+  end
 end
