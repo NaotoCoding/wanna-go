@@ -62,4 +62,14 @@ RSpec.describe 'Places', type: :request do
       end
     end
   end
+
+  describe 'GET /groups/:group_id/places/:id/edit' do
+    it '行きたい場所編集画面が表示される' do
+      owner = create(:user)
+      group = create(:group, owner: owner)
+      sign_in owner
+      get edit_group_place_path(group, create(:place, group:))
+      expect(response).to have_http_status 200
+    end
+  end
 end

@@ -1,10 +1,9 @@
 class PlacesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_group, only: [:show, :new, :create]
+  before_action :set_group, only: [:show, :new, :create, :edit]
+  before_action :set_not_visited_place, only: [:show, :edit]
 
-  def show
-    @place = @group.places.not_visited.find(params[:id])
-  end
+  def show; end
 
   def new
     @place = Place.new
@@ -20,6 +19,8 @@ class PlacesController < ApplicationController
     end
   end
 
+  def edit; end
+
   private
 
     def place_params
@@ -28,5 +29,9 @@ class PlacesController < ApplicationController
 
     def set_group
       @group = current_user.belonging_groups.find(params[:group_id])
+    end
+
+    def set_not_visited_place
+      @place = @group.places.not_visited.find(params[:id])
     end
 end
